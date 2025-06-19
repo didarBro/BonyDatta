@@ -34,6 +34,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           port: 21
-          local-dir: frontend/dist/       # <--- Updated path to match your structure
-          server-dir: /public_html/       # Or change to /public_html/subfolder/ if needed
+          local-dir: frontend/dist/
+          server-dir: /public_html/
           dangerous-clean-slate: true
