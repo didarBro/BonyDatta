@@ -4,22 +4,22 @@ const slides = [
     {
         id: 1,
         bg: "bg-teal-300",
-        heading: "PLANNING",
-        subheading: "We Do",
+        heading: "PERFECTION",
+        subheading: "I plan to",
         textColor: "text-black",
     },
     {
         id: 2,
         bg: "bg-yellow-300",
-        heading: "STRATEGY",
-        subheading: "We Have",
+        heading: "SMART",
+        subheading: "I Strategize",
         textColor: "text-gray-700",
     },
     {
         id: 3,
         bg: "bg-red-300",
         heading: "RESULTS",
-        subheading: "We Show",
+        subheading: "I Show",
         textColor: "text-black",
     },
 ];

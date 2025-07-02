@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
+    { name: 'About Me', path: '/about' },
     { name: 'Portfolio', path: '/portfolio' },
     { name: 'Services', path: '/services' },
     { name: 'Blog', path: '/blog' },
@@ -20,8 +20,8 @@ const Navbar = () => {
         {/* Logo & Subtitle */}
         <div className="flex flex-col">
           <h1 className="text-2xl font-light">
-            <span className="italic font-semibold text-black mr-1">M</span>
-            agic marketing
+            <span className="italic font-semibold text-black mr-1">B</span>
+            oni Datta
           </h1>
           <span className="text-sm text-gray-600">Marketing & Branding</span>
         </div>
