@@ -1,10 +1,10 @@
-// about.jsx
 export default function About() {
   const data = {
     title: "WHO AM I?",
     subheading:
       "Photo- Growth & Brand Marketing Pro | Full-Funnel Fixer | Remote-Ready",
-    image: "https://static.wixstatic.com/media/0b2ab67fc74f4858bfc215cfcb90ff1a.jpg/v1/fill/w_495,h_514,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/0b2ab67fc74f4858bfc215cfcb90ff1a.jpg", // Replace with your actual image path
+    video:
+      "https://www.w3schools.com/html/mov_bbb.mp4", // Replace with your video URL
     paragraphs: [
       "Full-time digital marketer, content strategist, and branding enthusiast — part-time skincare nerd. I design marketing funnels customized to the real needs of businesses, big or small. In-depth research and tried-and-true practices are my means to raising brand exposure, generating high-value leads, and maximizing revenue. From managing multi-channel campaigns to leading remote teams and creating digital content across various industries, I blend creativity, data, and technology to deliver impact. I've collaborated with financial firms, beauty brands, retail companies, and edtech platforms while keeping user needs and business goals in mind. Each campaign and piece of content I create is closely coordinated with designers, developers, and cross-functional teams. A solid understanding of the interconnectedness of content, campaign components, and analytics enables me to spot the golden triad to elevate performance and get the most bang for the buck.",
     ],
@@ -28,10 +28,13 @@ export default function About() {
 
       {/* Content */}
       <div className="mt-8 flex flex-col md:flex-row items-center max-w-4xl px-4">
-        {/* Image */}
-        <img
-          src={data.image}
-          alt="Team working together"
+        {/* Video */}
+        <video
+          src={data.video}
+          autoPlay
+          muted
+          loop
+          playsInline
           className="w-full md:w-1/2 object-cover rounded shadow-md"
         />
 
@@ -44,8 +47,16 @@ export default function About() {
       </div>
 
       {/* Tagline */}
-      <p className="mt-8 mb-12 text-center text-lg font-medium text-gray-800 max-w-3xl px-4">
-        {data.tagline}
+      <p className="relative mt-8 mb-12 text-center text-lg font-medium text-gray-800 max-w-3xl px-4 inline-block">
+        <span className="relative inline-block">
+          <span
+            className="absolute -left-1 -top-1 h-3 w-10 bg-gray-200"
+            aria-hidden="true"
+          ></span>
+          <span className="relative">
+            {data.tagline}
+          </span>
+        </span>
       </p>
     </div>
   );

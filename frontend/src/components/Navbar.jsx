@@ -21,7 +21,7 @@ const Navbar = () => {
         <div className="flex flex-col">
           <h1 className="text-2xl font-light">
             <span className="italic font-semibold text-black mr-1">B</span>
-            oni Datta
+            ony Datta
           </h1>
           <span className="text-sm text-gray-600">Marketing & Branding</span>
         </div>
