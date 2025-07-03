@@ -1,9 +1,52 @@
-import React from 'react'
+import { Mail, Linkedin, Instagram, Phone } from "lucide-react";
 
-const footer = () => {
+export default function Footer() {
   return (
-    <div>footer</div>
-  )
-}
+    <footer className="w-full bg-white border-t border-gray-200">
+      <div className="max-w-6xl mx-auto flex flex-wrap justify-center items-center gap-x-12 gap-y-4 py-4 px-4 text-sm text-gray-700">
+        {/* Copyright */}
+        <span className="text-gray-700">
+          © 2025 by Bony Datta.
+        </span>
 
-export default footer
+        {/* LinkedIn */}
+        <a
+          href="https://linkedin.com/in/dattabony"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-blue-600 transition"
+        >
+          <Linkedin className="w-5 h-5" />
+        </a>
+
+        {/* WhatsApp */}
+        <a
+          href="https://wa.me/8801782388822"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-green-600 transition"
+        >
+          <Phone className="w-5 h-5" />
+        </a>
+
+        {/* Email */}
+        <a
+          href="mailto:labonydatta@gmail.com"
+          className="hover:text-red-600 transition"
+        >
+          <Mail className="w-5 h-5" />
+        </a>
+
+        {/* Instagram */}
+        <a
+          href="https://instagram.com/bongram20"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-pink-500 transition"
+        >
+          <Instagram className="w-5 h-5" />
+        </a>
+      </div>
+    </footer>
+  );
+}

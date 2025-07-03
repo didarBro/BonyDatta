@@ -3,8 +3,7 @@ export default function About() {
     title: "WHO AM I?",
     subheading:
       "Photo- Growth & Brand Marketing Pro | Full-Funnel Fixer | Remote-Ready",
-    video:
-      "https://www.w3schools.com/html/mov_bbb.mp4", // Replace with your video URL
+    video: "/video/about.mp4",
     paragraphs: [
       "Full-time digital marketer, content strategist, and branding enthusiast — part-time skincare nerd. I design marketing funnels customized to the real needs of businesses, big or small. In-depth research and tried-and-true practices are my means to raising brand exposure, generating high-value leads, and maximizing revenue. From managing multi-channel campaigns to leading remote teams and creating digital content across various industries, I blend creativity, data, and technology to deliver impact. I've collaborated with financial firms, beauty brands, retail companies, and edtech platforms while keeping user needs and business goals in mind. Each campaign and piece of content I create is closely coordinated with designers, developers, and cross-functional teams. A solid understanding of the interconnectedness of content, campaign components, and analytics enables me to spot the golden triad to elevate performance and get the most bang for the buck.",
     ],
@@ -33,11 +32,12 @@ export default function About() {
           src={data.video}
           autoPlay
           muted
+          defaultMuted
           loop
           playsInline
+          style={{ height: "400px" }}
           className="w-full md:w-1/2 object-cover rounded shadow-md"
         />
-
         {/* Text */}
         <div className="mt-6 md:mt-0 md:ml-8 text-gray-700 text-justify space-y-4">
           {data.paragraphs.map((para, index) => (
