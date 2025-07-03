@@ -16,7 +16,7 @@
 
 //   useEffect(() => {
 //     setIsVisible(true);
-    
+
 //     const handleMouseMove = (e) => {
 //       setMousePos({ x: e.clientX, y: e.clientY });
 //     };
@@ -40,9 +40,9 @@
 //         <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-pink-300 to-purple-300 rounded-full opacity-20 animate-pulse"></div>
 //         <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full opacity-20 animate-bounce"></div>
 //         <div className="absolute bottom-40 left-20 w-24 h-24 bg-gradient-to-r from-green-300 to-teal-300 rounded-full opacity-20 animate-pulse"></div>
-        
+
 //         {/* Dynamic cursor follower */}
-//         <div 
+//         <div
 //           className="absolute w-64 h-64 bg-gradient-radial from-pink-200/30 to-transparent rounded-full pointer-events-none transition-all duration-300 ease-out"
 //           style={{
 //             left: mousePos.x - 128,
@@ -177,7 +177,7 @@
 //           0%, 100% { transform: translateY(0px); }
 //           50% { transform: translateY(-20px); }
 //         }
-        
+
 //         @keyframes fadeInUp {
 //           from {
 //             opacity: 0;
@@ -188,11 +188,11 @@
 //             transform: translateY(0);
 //           }
 //         }
-        
+
 //         .animate-float {
 //           animation: float 3s ease-in-out infinite;
 //         }
-        
+
 //         .animate-fadeInUp {
 //           animation: fadeInUp 0.6s ease-out both;
 //         }
@@ -203,13 +203,18 @@
 
 // export default Contact;
 
-
-
 import React, { useState, useEffect } from "react";
-import { FaWhatsapp, FaEnvelope, FaRocket, FaLightbulb, FaLeaf, FaHandshake } from "react-icons/fa";
+import {
+  FaWhatsapp,
+  FaEnvelope,
+  FaRocket,
+  FaLightbulb,
+  FaLeaf,
+  FaHandshake,
+} from "react-icons/fa";
 
 const data = {
-  title: "Contact",
+  title: "LET'S TALK",
   intro:
     "Let's build something bold, smart, and sustainable together. Whether it's a quick project or a long-term partnership, you can count on me.",
   whatsapp: "+8801782388822",
@@ -224,46 +229,49 @@ const Contact = () => {
 
   useEffect(() => {
     setIsVisible(true);
-    
+
     const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
 
     // Continuous typing effect for "Ready to Start?"
     const text = "Ready to Start?";
     let currentIndex = 0;
     let isDeleting = false;
-    
-    const typingInterval = setInterval(() => {
-      if (!isDeleting) {
-        // Typing forward
-        if (currentIndex < text.length) {
-          setTypingText(text.substring(0, currentIndex + 1));
-          currentIndex++;
+
+    const typingInterval = setInterval(
+      () => {
+        if (!isDeleting) {
+          // Typing forward
+          if (currentIndex < text.length) {
+            setTypingText(text.substring(0, currentIndex + 1));
+            currentIndex++;
+          } else {
+            // Pause before deleting
+            setTimeout(() => {
+              isDeleting = true;
+            }, 2000);
+          }
         } else {
-          // Pause before deleting
-          setTimeout(() => {
-            isDeleting = true;
-          }, 2000);
+          // Deleting backward
+          if (currentIndex > 0) {
+            setTypingText(text.substring(0, currentIndex - 1));
+            currentIndex--;
+          } else {
+            // Pause before typing again
+            setTimeout(() => {
+              isDeleting = false;
+            }, 500);
+          }
         }
-      } else {
-        // Deleting backward
-        if (currentIndex > 0) {
-          setTypingText(text.substring(0, currentIndex - 1));
-          currentIndex--;
-        } else {
-          // Pause before typing again
-          setTimeout(() => {
-            isDeleting = false;
-          }, 500);
-        }
-      }
-    }, isDeleting ? 50 : 100);
+      },
+      isDeleting ? 50 : 100
+    );
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
       clearInterval(typingInterval);
     };
   }, []);
@@ -283,21 +291,24 @@ const Contact = () => {
         <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-pink-300 to-purple-300 rounded-full opacity-20 animate-pulse"></div>
         <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full opacity-20 animate-bounce"></div>
         <div className="absolute bottom-40 left-20 w-24 h-24 bg-gradient-to-r from-green-300 to-teal-300 rounded-full opacity-20 animate-pulse"></div>
-        
+
         {/* Dynamic cursor follower */}
-        <div 
+        <div
           className="absolute w-64 h-64 bg-gradient-radial from-pink-200/30 to-transparent rounded-full pointer-events-none transition-all duration-300 ease-out"
           style={{
             left: mousePos.x - 128,
             top: mousePos.y - 128,
-            transform: 'translate(-50%, -50%)'
+            transform: "translate(-50%, -50%)",
           }}
         ></div>
       </div>
 
       {/* Header */}
       <div className="w-full bg-[#EF958A] py-8 flex justify-center">
-        <h1 className="text-5xl font-extrabold tracking-wide text-black uppercase">
+        <h1
+          className="text-5xl font-extrabold tracking-wide text-black uppercase"
+          style={{ transform: "scaleY(1.4)" }}
+        >
           {data.title}
         </h1>
       </div>
@@ -312,7 +323,7 @@ const Contact = () => {
               left: `${15 + index * 20}%`,
               top: `${30 + index * 15}%`,
               animationDelay: item.delay,
-              animationDuration: `${3 + index * 0.5}s`
+              animationDuration: `${3 + index * 0.5}s`,
             }}
           >
             <item.icon />
@@ -321,11 +332,13 @@ const Contact = () => {
       </div>
 
       {/* Intro with enhanced animation */}
-      <div className={`max-w-3xl px-6 py-12 text-center transform transition-all duration-1000 ${
-        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-      }`}>
+      <div
+        className={`max-w-3xl px-6 py-12 text-center transform transition-all duration-1000 ${
+          isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+        }`}
+      >
         <p className="text-xl md:text-2xl font-medium text-gray-800 leading-relaxed">
-          {data.intro.split(' ').map((word, index) => (
+          {data.intro.split(" ").map((word, index) => (
             <span
               key={index}
               className="inline-block animate-fadeInUp"
@@ -342,10 +355,10 @@ const Contact = () => {
         {/* WhatsApp Card */}
         <div
           className={`group relative overflow-hidden transform transition-all duration-500 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
-          style={{ animationDelay: '0.5s' }}
-          onMouseEnter={() => setActiveCard('whatsapp')}
+          style={{ animationDelay: "0.5s" }}
+          onMouseEnter={() => setActiveCard("whatsapp")}
           onMouseLeave={() => setActiveCard(null)}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 rounded-2xl transform rotate-1 group-hover:rotate-0 transition-transform duration-300"></div>
@@ -357,7 +370,7 @@ const Contact = () => {
           >
             <div className="relative">
               <FaWhatsapp size={28} className="animate-pulse" />
-              {activeCard === 'whatsapp' && (
+              {activeCard === "whatsapp" && (
                 <div className="absolute -top-2 -right-2 w-4 h-4 bg-white rounded-full animate-ping"></div>
               )}
             </div>
@@ -371,10 +384,10 @@ const Contact = () => {
         {/* Email Card */}
         <div
           className={`group relative overflow-hidden transform transition-all duration-500 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
-          style={{ animationDelay: '0.7s' }}
-          onMouseEnter={() => setActiveCard('email')}
+          style={{ animationDelay: "0.7s" }}
+          onMouseEnter={() => setActiveCard("email")}
           onMouseLeave={() => setActiveCard(null)}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 rounded-2xl transform -rotate-1 group-hover:rotate-0 transition-transform duration-300"></div>
@@ -384,7 +397,7 @@ const Contact = () => {
           >
             <div className="relative">
               <FaEnvelope size={28} className="animate-bounce" />
-              {activeCard === 'email' && (
+              {activeCard === "email" && (
                 <div className="absolute -top-2 -right-2 w-4 h-4 bg-white rounded-full animate-ping"></div>
               )}
             </div>
@@ -397,30 +410,45 @@ const Contact = () => {
       </div>
 
       {/* Call-to-Action Section */}
-      <div className={`text-center mt-10 mb-12 transform transition-all duration-1000 ${
-        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-      }`} style={{ animationDelay: '1s' }}>
+      <div
+        className={`text-center mt-10 mb-12 transform transition-all duration-1000 ${
+          isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+        }`}
+        style={{ animationDelay: "1s" }}
+      >
         <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-200/50 max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
             {typingText}
           </h2>
           <p className="text-gray-600 text-lg mb-6">
-            Drop me a line and let's turn your ideas into reality. I'm just a click away!
+            Drop me a line and let's turn your ideas into reality. I'm just a
+            click away!
           </p>
           <div className="flex justify-center space-x-4">
             <div className="w-3 h-3 bg-pink-400 rounded-full animate-pulse"></div>
-            <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-            <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+            <div
+              className="w-3 h-3 bg-purple-400 rounded-full animate-pulse"
+              style={{ animationDelay: "0.2s" }}
+            ></div>
+            <div
+              className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"
+              style={{ animationDelay: "0.4s" }}
+            ></div>
           </div>
         </div>
       </div>
 
       <style jsx>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
         }
-        
+
         @keyframes fadeInUp {
           from {
             opacity: 0;
@@ -431,11 +459,11 @@ const Contact = () => {
             transform: translateY(0);
           }
         }
-        
+
         .animate-float {
           animation: float 3s ease-in-out infinite;
         }
-        
+
         .animate-fadeInUp {
           animation: fadeInUp 0.6s ease-out both;
         }
