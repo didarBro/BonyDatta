@@ -20,7 +20,7 @@ const slides = [
     {
         id: 3,
         bg: "bg-red-300",
-        heading: "RESULTS",
+        heading: "RESULT",
         subheading: "I Show",
         textColor: "text-black",
     },
