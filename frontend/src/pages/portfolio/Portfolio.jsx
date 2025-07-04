@@ -96,7 +96,7 @@ const Portfolio = () => {
           <div
             key={rowIndex}
             ref={(el) => (rowRefs.current[rowIndex] = el)}
-            className={`grid grid-cols-1 md:grid-cols-${row.cols} gap-8 mt-8 transform transition-all duration-1000 ease-out
+            className={`grid grid-cols-2 md:grid-cols-${row.cols} gap-8 mt-8 transform transition-all duration-1000 ease-out
               ${visibleRows[rowIndex] 
                 ? "opacity-100 translate-y-0 scale-100" 
                 : "opacity-0 translate-y-16 scale-95"}`}
