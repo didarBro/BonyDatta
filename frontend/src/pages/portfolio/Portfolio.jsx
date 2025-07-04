@@ -67,7 +67,7 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="bg-white relative p-5">
+    <div className="bg-white relative">
       {/* Header */}
       <div className="bg-teal-300 py-10 text-center">
         <h2
