@@ -52,7 +52,8 @@
 // }
 
 
-import { Mail, Linkedin, Instagram, Phone } from "lucide-react";
+import { FaLinkedinIn, FaInstagramSquare } from "react-icons/fa";
+import { IoLogoWhatsapp, IoIosMail } from "react-icons/io";
 
 export default function Footer() {
   return (
@@ -70,9 +71,9 @@ export default function Footer() {
             href="https://linkedin.com/in/dattabony"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-blue-600 transition"
+            className="transition"
           >
-            <Linkedin className="w-5 h-5" />
+            <FaLinkedinIn size={20} className="text-black" />
           </a>
 
           {/* WhatsApp */}
@@ -80,17 +81,17 @@ export default function Footer() {
             href="https://wa.me/8801782388822"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-green-600 transition"
+            className="transition"
           >
-            <Phone className="w-5 h-5" />
+            <IoLogoWhatsapp size={22} className="text-black" />
           </a>
 
           {/* Email */}
           <a
             href="mailto:labonydatta@gmail.com"
-            className="hover:text-red-600 transition"
+            className="transition"
           >
-            <Mail className="w-5 h-5" />
+            <IoIosMail size={22} className="text-black" />
           </a>
 
           {/* Instagram */}
@@ -98,9 +99,9 @@ export default function Footer() {
             href="https://instagram.com/bongram20"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-pink-500 transition"
+            className="transition"
           >
-            <Instagram className="w-5 h-5" />
+            <FaInstagramSquare size={22} className="text-black" />
           </a>
         </div>
       </div>
