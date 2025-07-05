@@ -107,15 +107,44 @@ const Navbar = () => {
 
   return (
     <header className="w-full shadow-sm">
-      <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
+      <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-60">
         {/* Logo & Subtitle */}
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           <h1 className="text-2xl font-light">
             <span className="italic font-semibold text-black mr-1">B</span>
             ony Datta
           </h1>
           <span className="text-sm text-gray-600">Marketing & Branding</span>
+        </div> */}
+        <div
+          className="flex flex-col"
+          style={{
+            fontFamily: '"Libre Baskerville", serif',
+            fontSize: '18px',
+            fontWeight: 400,
+            lineHeight: '12.6px',
+            color: 'rgb(34, 34, 34)',
+            gap: '12px' // gap between the two lines
+          }}
+        >
+          <h1 style={{ display: 'flex', alignItems: 'baseline' }}>
+            <span
+              style={{
+                fontStyle: 'italic',
+                fontWeight: 600,
+                marginRight: '4px',
+                color: 'black',
+                fontSize: '28px' // make the B bigger
+              }}
+            >
+              B
+            </span>
+            ony Datta
+          </h1>
+          <span>Marketing & Branding</span>
         </div>
+
+
 
         {/* Navigation */}
         <nav
@@ -139,9 +168,8 @@ const Navbar = () => {
                 to={link.path}
                 ref={(el) => (navRefs.current[link.name] = el)}
                 onMouseEnter={() => handleMouseEnter(link.name)}
-                className={`relative py-1 transition-colors duration-200 ${
-                  isActive ? 'font-medium text-black' : 'text-gray-600 hover:text-black'
-                }`}
+                className={`relative py-1 transition-colors duration-200 ${isActive ? 'font-medium text-black' : 'text-gray-600 hover:text-black'
+                  }`}
               >
                 {link.name}
               </Link>

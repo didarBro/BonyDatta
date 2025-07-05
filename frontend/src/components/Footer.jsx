@@ -60,9 +60,16 @@ export default function Footer() {
     <footer className="w-full bg-white border-t border-gray-200">
       <div className="max-w-6xl mx-auto flex flex-wrap justify-between items-center py-4 px-4 text-sm text-gray-700">
         {/* Left: Copyright */}
-        <span className="text-gray-700">
+        <span style={{
+          fontFamily: '"Libre Baskerville", serif',
+          fontSize: '13px',
+          fontWeight: 400,
+          lineHeight: '16.9px',
+          color: 'rgb(34, 34, 34)'
+        }}>
           © 2025 by Bony Datta.
         </span>
+
 
         {/* Right: Social Icons */}
         <div className="flex items-center space-x-6">
