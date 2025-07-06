@@ -1,17 +1,68 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaHeart, FaFacebookF, FaTwitter, FaPinterestP, FaTumblr, FaEnvelope } from "react-icons/fa";
+import {
+  FaHeart,
+  FaFacebookF,
+  FaTwitter,
+  FaPinterestP,
+  FaTumblr,
+  FaEnvelope,
+} from "react-icons/fa";
 import { IoMdShareAlt } from "react-icons/io";
 
 const Portfolio = () => {
   const projects = [
-    { title: "Branding & Visuals", image: "/images/branding.jpg" },
-    { title: "Social Media Graphics", image: "/images/social.jpg" },
-    { title: "Website UI/UX Design", image: "/images/uiux.jpg" },
-    { title: "Print & Digital", image: "/images/print.jpg" },
-    { title: "Campaign Creatives", image: "/images/campaign.jpg" },
-    { title: "Email Marketing", image: "/images/email.jpg" },
-    { title: "Paid Media Campaign", image: "/images/paid.jpg" },
-    { title: "Performance & Analytics", image: "/images/performance.jpg" },
+    {
+      title: "Branding & Visuals",
+      description:
+        "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
+      image: [
+        "/images/branding.jpg",
+        "/images/branding.jpg",
+        "/images/branding.jpg",
+      ],
+    },
+    {
+      title: "Social Media Graphics",
+      description: "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
+      image: "/images/social.jpg",
+    },
+    {
+      title: "Website UI/UX Design",
+      description:
+        "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
+      image: "/images/uiux.jpg",
+    },
+    {
+      title: "Print & Digital",
+      description:
+        "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
+      image: "/images/print.jpg",
+    },
+    {
+      title: "Campaign Creatives",
+      description:
+        "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
+      image: "/images/campaign.jpg",
+    },
+    {
+      title: "Email Marketing",
+      description:
+        "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
+      image: "/images/email.jpg",
+    },
+    {
+      title: "Paid Media Campaign",
+      description:
+        "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
+      image: "/images/paid.jpg",
+    },
+    {
+      title: "Performance & Analytics",
+      description:
+        "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
+
+      image: "/images/performance.jpg",
+    },
   ];
 
   const [liked, setLiked] = useState({});
@@ -37,7 +88,7 @@ const Portfolio = () => {
             observer.unobserve(entry.target);
           }
         },
-        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
       observer.observe(ref);
@@ -69,13 +120,22 @@ const Portfolio = () => {
   return (
     <div className="bg-white relative">
       {/* Header */}
-      <div className="bg-teal-300 py-10 text-center">
-        <h2
+      <div
+        className="bg-teal-300 py-10 text-center"
+        style={{
+          fontFamily: "impact, impact-w01-2010, sans-serif",
+          fontSize: "70px",
+          fontWeight: 700,
+          lineHeight: "normal",
+          color: "rgb(34,34,34)",
+        }}
+      >
+        <h1
           className="text-5xl md:text-5xl font-extrabold uppercase tracking-wide transform transition-all duration-700 ease-out"
           style={{ transform: "scaleY(1.4)" }}
         >
           MY WORK
-        </h2>
+        </h1>
       </div>
 
       {/* Intro */}
@@ -96,10 +156,14 @@ const Portfolio = () => {
           <div
             key={rowIndex}
             ref={(el) => (rowRefs.current[rowIndex] = el)}
-            className={`grid grid-cols-2 md:grid-cols-${row.cols} gap-8 mt-8 transform transition-all duration-1000 ease-out
-              ${visibleRows[rowIndex] 
-                ? "opacity-100 translate-y-0 scale-100" 
-                : "opacity-0 translate-y-16 scale-95"}`}
+            className={`grid grid-cols-2 md:grid-cols-${
+              row.cols
+            } gap-8 mt-8 transform transition-all duration-1000 ease-out
+              ${
+                visibleRows[rowIndex]
+                  ? "opacity-100 translate-y-0 scale-100"
+                  : "opacity-0 translate-y-16 scale-95"
+              }`}
             style={{
               transitionDelay: `${rowIndex * 0.2}s`,
             }}
@@ -111,21 +175,21 @@ const Portfolio = () => {
                   ? index === 1
                     ? "mt-8"
                     : index === 2
-                      ? "mt-4"
-                      : ""
+                    ? "mt-4"
+                    : ""
                   : rowIndex === 2
-                    ? index === 0
-                      ? "mt-4"
-                      : index === 2
-                        ? "mt-8"
-                        : ""
-                    : "";
+                  ? index === 0
+                    ? "mt-4"
+                    : index === 2
+                    ? "mt-8"
+                    : ""
+                  : "";
               return (
-                <div 
-                  key={globalIndex} 
+                <div
+                  key={globalIndex}
                   className={`relative group ${staggerClass} transform transition-all duration-700 ease-out hover:scale-105`}
                   style={{
-                    transitionDelay: `${(rowIndex * 0.3) + (index * 0.1)}s`,
+                    transitionDelay: `${rowIndex * 0.3 + index * 0.1}s`,
                   }}
                 >
                   <div className="overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-out">
@@ -139,11 +203,14 @@ const Portfolio = () => {
                       <h3 className="text-white text-lg font-semibold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
                         {project.title}
                       </h3>
-                      <div className="flex justify-between items-center w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out" style={{ transitionDelay: '0.1s' }}>
+                      <div
+                        className="flex justify-between items-center w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out"
+                        style={{ transitionDelay: "0.1s" }}
+                      >
                         <FaHeart
                           className={`text-2xl cursor-pointer transition-all duration-300 ease-out transform hover:scale-125 ${
-                            liked[globalIndex] 
-                              ? "text-red-600 animate-pulse" 
+                            liked[globalIndex]
+                              ? "text-red-600 animate-pulse"
                               : "text-white hover:text-red-400"
                           }`}
                           onClick={() => toggleLike(globalIndex)}
@@ -173,7 +240,9 @@ const Portfolio = () => {
             >
               &times;
             </button>
-            <h3 className="text-xl font-semibold mb-4 text-center">Share this project</h3>
+            <h3 className="text-xl font-semibold mb-4 text-center">
+              Share this project
+            </h3>
             <div className="flex justify-center space-x-4 mb-4">
               <FaFacebookF className="text-2xl cursor-pointer hover:text-blue-600 transition-all duration-300 ease-out transform hover:scale-125" />
               <FaTwitter className="text-2xl cursor-pointer hover:text-blue-400 transition-all duration-300 ease-out transform hover:scale-125" />
