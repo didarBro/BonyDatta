@@ -304,9 +304,14 @@ const Portfolio = () => {
         `,
       image: "/images/branding.jpg",
       projectImages: [
-        "/images/branding.jpg",
-        "/images/branding.jpg",
-        "/images/branding.jpg",
+        "/images/branding/1.png",
+        "/images/branding/2.png",
+        "/images/branding/3.png",
+        "/images/branding/4.png",
+        "/images/branding/5.png",
+        "/images/branding/6.png",
+        "/images/branding/7.png",
+        
       ],
     },
 

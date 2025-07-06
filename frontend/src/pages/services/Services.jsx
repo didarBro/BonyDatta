@@ -51,7 +51,7 @@ const Services = () => {
           className="text-5xl md:text-5xl font-extrabold uppercase tracking-wide transform transition-all duration-700 ease-out"
           style={{ transform: "scaleY(1.4)" }}
         >
-        WHAT I DO
+          WHAT I DO
         </h1>
       </div>
 
@@ -110,7 +110,7 @@ const Services = () => {
         </p>
 
         <a
-          href="https://wa.me/your-number"
+          href="https://wa.me/8801782388822"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center mt-4 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded"

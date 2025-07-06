@@ -1,4 +1,3 @@
-
 // import { ArrowRight, MoveRight } from "lucide-react";
 // import { useEffect, useState } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
@@ -128,8 +127,6 @@
 //         </div>
 //     );
 // }
-
-
 
 // import { ArrowRight, MoveRight } from "lucide-react";
 // import { useEffect, useState } from "react";
@@ -262,7 +259,6 @@
 //     );
 // }
 
-
 import { ArrowRight, MoveRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -324,14 +320,16 @@ export default function Hero() {
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
             <p
-              className="text-3xl md:text-5xl mb-10 text-left"
+              className="text-2xl md:text-5xl mb-10 text-left"
               style={{
                 color: "rgb(34,34,34)",
-                fontFamily: "impact, impact-w01-2010, sans-serif",
+                fontFamily: "Arial, sans-serif",
+                fontWeight: 400,
               }}
             >
               {subheading}
             </p>
+
             <hr className="w-full border-t-1 border-gray-500/60 left-0 mt-[-7px] absolute" />
             <h1
               className="text-7xl py-0 leading-none text-center md:text-8xl font-extrabold tracking-widest"
@@ -350,7 +348,7 @@ export default function Hero() {
         <div className="mt-10 flex justify-end">
           <button
             onClick={scrollToPortfolio}
-            className="group text-2xl font-semibold flex flex-col items-center"
+            className="group text-2xl flex flex-col items-center"
           >
             <span className="relative inline-block w-fit">
               <Link
@@ -358,7 +356,8 @@ export default function Hero() {
                 className="block hover:text-black transition"
                 style={{
                   color: "rgb(34,34,34)",
-                  fontFamily: "impact, impact-w01-2010, sans-serif",
+                  fontFamily: "Arial, sans-serif",
+                  fontWeight: 400,
                 }}
               >
                 <AnimatePresence mode="wait">
@@ -390,10 +389,7 @@ export default function Hero() {
                     strokeWidth="6"
                     strokeLinecap="round"
                   />
-                  <polygon
-                    points="100,0 110,6 100,12"
-                    fill="currentColor"
-                  />
+                  <polygon points="100,0 110,6 100,12" fill="currentColor" />
                 </svg>
               </Link>
             </span>

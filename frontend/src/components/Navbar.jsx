@@ -1,4 +1,3 @@
-
 // // Navbar.jsx
 // import React, { useState, useRef, useEffect } from 'react';
 // import { Link, useLocation } from 'react-router-dom';
@@ -89,8 +88,6 @@
 //           <span>Marketing & Branding</span>
 //         </div>
 
-
-
 //         {/* Navigation */}
 //         <nav
 //           className="relative flex space-x-8 text-sm font-light"
@@ -132,10 +129,9 @@
 
 // export default Navbar;
 
-
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { FiMenu, FiX } from 'react-icons/fi'; // Icons for menu toggle
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { FiMenu, FiX } from "react-icons/fi"; // Icons for menu toggle
 
 const Navbar = () => {
   const location = useLocation();
@@ -144,11 +140,11 @@ const Navbar = () => {
   const navRefs = useRef({});
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Me', path: '/about' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Services', path: '/services' },
-    { name: 'Contact Us', path: '/contact' },
+    { name: "Home", path: "/" },
+    { name: "About Me", path: "/about" },
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "Services", path: "/services" },
+    { name: "Contact Us", path: "/contact" },
   ];
 
   useEffect(() => {
@@ -191,27 +187,28 @@ const Navbar = () => {
           className="flex flex-col"
           style={{
             fontFamily: '"Libre Baskerville", serif',
-            fontSize: '18px',
+            fontSize: "18px",
             fontWeight: 400,
-            lineHeight: '12.6px',
-            color: 'rgb(34, 34, 34)',
-            gap: '12px',
+            lineHeight: "12.6px",
+            color: "rgb(34, 34, 34)",
+            gap: "12px",
           }}
         >
-          <h1 style={{ display: 'flex', alignItems: 'baseline' }}>
+          <h1 style={{ display: "flex", alignItems: "baseline" }}>
             <span
               style={{
-                fontStyle: 'italic',
-                fontWeight: 600,
-                marginRight: '4px',
-                color: 'black',
-                fontSize: '28px',
+                fontStyle: "italic",
+                fontWeight: 800,
+                color: "black",
+                fontSize: "28px",
+                marginRight: "-2px", // Pull text closer
               }}
             >
               B
             </span>
             ony Datta
           </h1>
+
           <span>Marketing & Branding</span>
         </div>
 
@@ -247,12 +244,12 @@ const Navbar = () => {
                 onMouseEnter={() => handleMouseEnter(link.name)}
                 className={`relative py-1 transition-colors duration-200 ${
                   isActive
-                    ? 'font-medium text-black'
-                    : 'text-gray-600 hover:text-black'
+                    ? "font-medium text-black"
+                    : "text-gray-600 hover:text-black"
                 }`}
                 style={{
                   fontFamily: '"Libre Baskerville", serif',
-                  fontSize: '18px',
+                  fontSize: "18px",
                 }}
               >
                 {link.name}
@@ -274,12 +271,12 @@ const Navbar = () => {
                   to={link.path}
                   className={`block py-2 border-b border-gray-200 ${
                     isActive
-                      ? 'font-medium text-black'
-                      : 'text-gray-600 hover:text-black'
+                      ? "font-medium text-black"
+                      : "text-gray-600 hover:text-black"
                   }`}
                   style={{
                     fontFamily: '"Libre Baskerville", serif',
-                    fontSize: '18px',
+                    fontSize: "18px",
                   }}
                 >
                   {link.name}

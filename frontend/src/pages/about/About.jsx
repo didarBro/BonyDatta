@@ -136,10 +136,10 @@ export default function About() {
         </div>
 
         {/* Text */}
-        <div className="flex-1 h-full flex flex-col justify-between text-gray-700 text-justify space-y-5"
+        <div className="flex-1 h-full flex flex-col justify-between text-gray-700 text-justify space-y-2"
         style={{
           fontFamily: "libre baskerville, serif",
-          fontSize: "16px",
+          fontSize: "17px",
           fontWeight: 400,
           lineHeight: "27px",
           color: "rgb(34,34,34)",
