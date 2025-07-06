@@ -200,7 +200,6 @@
 
 // export default DetailsCart;
 
-
 import React, { useState, useEffect } from "react";
 import { RiShareForwardLine } from "react-icons/ri";
 import {
@@ -225,21 +224,21 @@ const DetailsCart = ({ project, onClose }) => {
   // Handle fullscreen functionality
   useEffect(() => {
     const handleKeydown = (e) => {
-      if (e.key === 'Escape' && isFullscreen) {
+      if (e.key === "Escape" && isFullscreen) {
         setIsFullscreen(false);
       }
     };
 
     if (isFullscreen) {
-      document.addEventListener('keydown', handleKeydown);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleKeydown);
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     return () => {
-      document.removeEventListener('keydown', handleKeydown);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleKeydown);
+      document.body.style.overflow = "unset";
     };
   }, [isFullscreen]);
 
@@ -416,11 +415,11 @@ const DetailsCart = ({ project, onClose }) => {
                 <img
                   src={currentImage}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  className="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-105"
                 />
                 {/* Image overlay for better visual appeal */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                
+
                 {/* Left Arrow - positioned on the left side of the image */}
                 {project.projectImages?.length > 1 && (
                   <button
@@ -490,14 +489,54 @@ const DetailsCart = ({ project, onClose }) => {
                   </div>
                 )}
               </div>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 sm:mb-6">
-                {project.detailedDescription}
-              </p>
-              
+              <div className="space-y-3">
+                {project.detailedDescription
+                  .trim()
+                  .split("\n")
+                  .map((line, index) => {
+                    const trimmedLine = line.trim();
+
+                    if (!trimmedLine) return null; // Skip empty lines
+
+                    if (trimmedLine.endsWith(":")) {
+                      // Section heading
+                      return (
+                        <h3
+                          key={index}
+                          className="text-base font-semibold text-gray-800 mt-4"
+                        >
+                          {trimmedLine}
+                        </h3>
+                      );
+                    }
+
+                    if (trimmedLine.startsWith("→")) {
+                      // Bullet/step
+                      return (
+                        <div
+                          key={index}
+                          className="flex items-start space-x-2 text-sm text-gray-700"
+                        >
+                          <span className="mt-0.5 text-blue-500">•</span>
+                          <span>{trimmedLine.slice(1).trim()}</span>
+                        </div>
+                      );
+                    }
+
+                    // Normal paragraph
+                    return (
+                      <p key={index} className="text-sm text-gray-600">
+                        {trimmedLine}
+                      </p>
+                    );
+                  })}
+              </div>
+
               {/* Additional interactive elements */}
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                  {currentImageIndex + 1} of {project.projectImages?.length || 1}
+                  {currentImageIndex + 1} of{" "}
+                  {project.projectImages?.length || 1}
                 </span>
                 {isLiked && (
                   <span className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium animate-pulse">
