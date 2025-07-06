@@ -375,10 +375,14 @@ const Portfolio = () => {
       image: "/images/print.jpg",
       detailedDescription:
         "Clear, compelling brand collateral captures the essence of a brand. I produce sleek, on-brand assets, including flyers, decks, brochures, and more. I simplify visuals and copy for clarity and impact. The result is digital assets that are sharp, cohesive, and memorable.",
-      projectImages: [
-        "/images/print.jpg",
-        "/images/print.jpg",
-        "/images/print.jpg",
+      mediaItems: [
+        { type: "pdf", url: "/images/printDigital/Flyer- 1.pdf" },
+        { type: "pdf", url: "/images/printDigital/Flyer- 2.pdf" },
+        { type: "pdf", url: "/images/printDigital/Flyer- 3.pdf" },
+        { type: "pdf", url: "/images/printDigital/Flyers.pdf" },
+        { type: "pdf", url: "/images/printDigital/Presentation.pdf" },
+        { type: "pdf", url: "/images/printDigital/Water Bottle Design.pdf" },
+        { type: "pdf", url: "/images/printDigital/Window Banner.pdf" },
       ],
     },
     {
@@ -388,11 +392,7 @@ const Portfolio = () => {
       image: "/images/campaign.jpg",
       detailedDescription:
         "Describe your image here. Use catchy text to tell people the story behind the photo. Go to 'Manage Media' to add your content.",
-      projectImages: [
-        "/images/campaign.jpg",
-        "/images/campaign.jpg",
-        "/images/campaign.jpg",
-      ],
+      mediaItems: [{ type: "image", url: "/images/campaign/a.png" }],
     },
     {
       title: "Email Marketing",
@@ -488,7 +488,7 @@ const Portfolio = () => {
   const openProjectDetails = (project) => {
     setSelectedProject(project);
   };
- 
+
   const closeProjectDetails = () => {
     setSelectedProject(null);
   };
