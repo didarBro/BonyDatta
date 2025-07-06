@@ -371,7 +371,7 @@ const Portfolio = () => {
     {
       title: "Print & Digital",
       description:
-        "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
+        "Clear, compelling brand collateral captures the essence of a brand. I produce sleek, on-brand assets, including flyers, decks, brochures, and more. I simplify visuals and copy for clarity and impact. The result is digital assets that are sharp, cohesive, and memorable.",
       image: "/images/print.jpg",
       detailedDescription:
         "Clear, compelling brand collateral captures the essence of a brand. I produce sleek, on-brand assets, including flyers, decks, brochures, and more. I simplify visuals and copy for clarity and impact. The result is digital assets that are sharp, cohesive, and memorable.",
@@ -388,19 +388,19 @@ const Portfolio = () => {
     {
       title: "Campaign Creatives",
       description:
-        "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
+        "Businesses often have great products or offers, but struggle to communicate them clearly through visuals and messaging. Campaign creatives, such as ads, emails, and landing page graphics, must feel authentic, consistent, and result-driven. I dig into the audience’s needs and the sales funnel, then tailor designs and copy accordingly. The final creatives boost click-throughs, improve ROI, and make the campaigns stand out.",
       image: "/images/campaign.jpg",
       detailedDescription:
-        "Describe your image here. Use catchy text to tell people the story behind the photo. Go to 'Manage Media' to add your content.",
+        "Businesses often have great products or offers, but struggle to communicate them clearly through visuals and messaging. Campaign creatives, such as ads, emails, and landing page graphics, must feel authentic, consistent, and result-driven. I dig into the audience’s needs and the sales funnel, then tailor designs and copy accordingly. The final creatives boost click-throughs, improve ROI, and make the campaigns stand out.",
       mediaItems: [{ type: "image", url: "/images/campaign/a.png" }],
     },
     {
       title: "Email Marketing",
       description:
-        "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
+        "I help brands connect with their audiences through emails that don’t feel like spam. From welcome flows to promos and newsletters, I handle strategy, copywriting, and design, with a focus on clean layouts, strong CTAs, and audience segmentation. It results in higher open rates, more clicks, and emails people actually want to read.",
       image: "/images/email.jpg",
       detailedDescription:
-        "Describe your image here. Use catchy text to tell people the story behind the photo. Go to 'Manage Media' to add your content.",
+        "I help brands connect with their audiences through emails that don’t feel like spam. From welcome flows to promos and newsletters, I handle strategy, copywriting, and design, with a focus on clean layouts, strong CTAs, and audience segmentation. It results in higher open rates, more clicks, and emails people actually want to read.",
       projectImages: [
         "/images/email.jpg",
         "/images/email.jpg",
