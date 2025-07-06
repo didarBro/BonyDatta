@@ -1,3 +1,206 @@
+// import React, { useState, useEffect } from "react";
+// import { RiShareForwardLine } from "react-icons/ri";
+// import {
+//   MdOutlineArrowBackIosNew,
+//   MdOutlineArrowForwardIos,
+// } from "react-icons/md";
+// import { BsArrowsAngleExpand } from "react-icons/bs";
+// import { FaHeart } from "react-icons/fa";
+// import { IoMdClose } from "react-icons/io";
+
+// const DetailsCart = ({ project, onClose }) => {
+//   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+//   const [isLiked, setIsLiked] = useState(false);
+//   const [isVisible, setIsVisible] = useState(false);
+//   const [isFullscreen, setIsFullscreen] = useState(false);
+
+//   useEffect(() => {
+//     const timer = setTimeout(() => setIsVisible(true), 50);
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   const nextImage = () => {
+//     if (project.projectImages && project.projectImages.length > 1) {
+//       setCurrentImageIndex((prev) =>
+//         prev === project.projectImages.length - 1 ? 0 : prev + 1
+//       );
+//     }
+//   };
+
+//   const prevImage = () => {
+//     if (project.projectImages && project.projectImages.length > 1) {
+//       setCurrentImageIndex((prev) =>
+//         prev === 0 ? project.projectImages.length - 1 : prev - 1
+//       );
+//     }
+//   };
+
+//   const toggleLike = () => {
+//     setIsLiked(!isLiked);
+//   };
+
+//   const handleShare = () => {
+//     if (navigator.share) {
+//       navigator.share({
+//         title: project.title,
+//         text: project.description,
+//         url: window.location.href,
+//       });
+//     } else {
+//       navigator.clipboard.writeText(window.location.href);
+//       alert("Link copied to clipboard!");
+//     }
+//   };
+
+//   const handleBackdropClick = (e) => {
+//     if (e.target === e.currentTarget) {
+//       onClose();
+//     }
+//   };
+
+//   const toggleFullscreen = () => {
+//     setIsFullscreen(!isFullscreen);
+//   };
+
+//   const currentImage =
+//     project.projectImages && project.projectImages.length > 0
+//       ? project.projectImages[currentImageIndex]
+//       : project.image;
+
+//   return (
+//     <div
+//       className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+//       onClick={handleBackdropClick}
+//     >
+//       <div
+//         className={`bg-white w-full h-full overflow-hidden shadow-2xl transform transition-all duration-500 ease-out ${
+//           isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+//         }`}
+//       >
+//         {/* Header */}
+//         <div className="flex items-center justify-between p-4 border-b border-gray-200">
+//           <div className="flex items-center space-x-4">
+//             {/* Fullscreen Icon */}
+//             <BsArrowsAngleExpand
+//               className="text-2xl text-gray-400 cursor-pointer hover:text-black transition-transform hover:scale-110"
+//               onClick={toggleFullscreen}
+//             />
+
+//             {/* Like Icon */}
+//             <FaHeart
+//               className={`text-2xl cursor-pointer transition-all duration-300 ease-out transform hover:scale-125 ${
+//                 isLiked
+//                   ? "text-red-600 animate-pulse"
+//                   : "text-gray-400 hover:text-red-400"
+//               }`}
+//               onClick={toggleLike}
+//             />
+
+//             {/* Share Icon */}
+//             <RiShareForwardLine
+//               className="text-2xl text-gray-400 cursor-pointer transition-all duration-300 ease-out transform hover:scale-125 hover:text-blue-500"
+//               onClick={handleShare}
+//             />
+//           </div>
+
+//           {/* Close Button */}
+//           <button
+//             onClick={onClose}
+//             className="text-3xl text-gray-400 hover:text-gray-600 transition-colors duration-200 ease-out"
+//             aria-label="Close details"
+//           >
+//             <IoMdClose />
+//           </button>
+//         </div>
+
+//         <div className="flex flex-col lg:flex-row h-[calc(100%-64px)]">
+//           {/* Image Section */}
+//           {/* <div className="lg:w-2/3 relative bg-rose-100 flex items-center justify-center h-1/2 lg:h-full"> */}
+//           <div className="lg:w-2/3 relative flex items-center justify-center h-1/2 lg:h-full">
+//             {/* Arrows */}
+//             {project.projectImages?.length > 1 && (
+//               <>
+//                 <button
+//                   onClick={prevImage}
+//                   className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg z-10"
+//                   aria-label="Previous image"
+//                 >
+//                   <MdOutlineArrowBackIosNew className="text-gray-600 text-xl" />
+//                 </button>
+//                 <button
+//                   onClick={nextImage}
+//                   className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg z-10"
+//                   aria-label="Next image"
+//                 >
+//                   <MdOutlineArrowForwardIos className="text-gray-600 text-xl" />
+//                 </button>
+//               </>
+//             )}
+
+//             {/* Image Display */}
+//             <div
+//               className={`relative z-10 ${
+//                 isFullscreen
+//                   ? "w-full h-full flex items-center justify-center"
+//                   : "max-w-[1000px] max-h-[800px] flex items-center justify-center p-4"
+//               }`}
+//             >
+//               <img
+//                 src={currentImage}
+//                 alt={project.title}
+//                 className="object-scale-down max-w-full max-h-full rounded shadow-lg"
+//               />
+//             </div>
+
+//             {/* Dots */}
+//             {project.projectImages?.length > 1 && (
+//               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+//                 {project.projectImages.map((_, index) => (
+//                   <button
+//                     key={index}
+//                     onClick={() => setCurrentImageIndex(index)}
+//                     className={`w-2 h-2 rounded-full transition-all duration-200 ${
+//                       index === currentImageIndex
+//                         ? "bg-blue-600 scale-125"
+//                         : "bg-white bg-opacity-60 hover:bg-opacity-80"
+//                     }`}
+//                     aria-label={`Image ${index + 1}`}
+//                   />
+//                 ))}
+//               </div>
+//             )}
+//           </div>
+
+//           {/* Content Section */}
+//           <div className="lg:w-1/3 p-6 flex flex-col h-1/2 lg:h-full overflow-y-auto">
+//             <div className="flex-1">
+//               <h2 className="text-2xl font-bold text-gray-800 mb-4">
+//                 {project.title}
+//               </h2>
+//               <p className="text-gray-600 leading-relaxed mb-6">
+//                 {project.detailedDescription}
+//               </p>
+//             </div>
+
+//             <div className="flex justify-end mt-auto">
+//               <button
+//                 onClick={nextImage}
+//                 className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors duration-200 ease-out"
+//                 aria-label="Next image"
+//               >
+//                 <MdOutlineArrowForwardIos className="text-lg" />
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default DetailsCart;
+
+
 import React, { useState, useEffect } from "react";
 import { RiShareForwardLine } from "react-icons/ri";
 import {
@@ -326,40 +529,4 @@ const DetailsCart = ({ project, onClose }) => {
   );
 };
 
-// Sample usage with mock data
-const App = () => {
-  const [showDetails, setShowDetails] = useState(false);
-  
-  const mockProject = {
-    title: "Modern Web Application",
-    description: "A beautiful and responsive web application",
-    detailedDescription: "This is a comprehensive web application built with modern technologies including React, Tailwind CSS, and various interactive components. The application features a responsive design that works seamlessly across all devices, from mobile phones to desktop computers. It includes advanced features like image galleries, fullscreen viewing, social sharing capabilities, and smooth animations that enhance the user experience.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-    projectImages: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=600&fit=crop"
-    ]
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
-      <button
-        onClick={() => setShowDetails(true)}
-        className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-      >
-        View Project Details
-      </button>
-      
-      {showDetails && (
-        <DetailsCart 
-          project={mockProject} 
-          onClose={() => setShowDetails(false)} 
-        />
-      )}
-    </div>
-  );
-};
-
-export default App;
+export default DetailsCart;
