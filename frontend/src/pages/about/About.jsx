@@ -75,7 +75,7 @@ export default function About() {
   const data = {
     title: "WHO AM I ?",
     subheading:
-      "Photo- Growth & Brand Marketing Pro | Full-Funnel Fixer | Remote-Ready",
+      "Growth & Brand Marketing Pro | Full-Funnel Fixer | Remote-Ready",
     video: "/video/about.mp4",
     paragraphs: [
       "Full-time digital marketer, content strategist, and branding enthusiast & part-time skincare nerd.",
