@@ -207,11 +207,11 @@ import {
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
 import { BsArrowsAngleExpand, BsArrowsAngleContract } from "react-icons/bs";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaFilePdf } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 
 const DetailsCart = ({ project, onClose }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -242,19 +242,29 @@ const DetailsCart = ({ project, onClose }) => {
     };
   }, [isFullscreen]);
 
-  const nextImage = () => {
-    if (project.projectImages && project.projectImages.length > 1) {
-      setCurrentImageIndex((prev) =>
-        prev === project.projectImages.length - 1 ? 0 : prev + 1
-      );
+  // Get media items (either mediaItems or projectImages)
+  const getMediaItems = () => {
+    if (project.mediaItems && project.mediaItems.length > 0) {
+      return project.mediaItems;
+    } else if (project.projectImages && project.projectImages.length > 0) {
+      return project.projectImages.map(img => ({ type: "image", url: img }));
+    } else {
+      return [{ type: "image", url: project.image }];
     }
   };
 
-  const prevImage = () => {
-    if (project.projectImages && project.projectImages.length > 1) {
-      setCurrentImageIndex((prev) =>
-        prev === 0 ? project.projectImages.length - 1 : prev - 1
-      );
+  const mediaItems = getMediaItems();
+  const totalItems = mediaItems.length;
+
+  const nextMedia = () => {
+    if (totalItems > 1) {
+      setCurrentMediaIndex((prev) => (prev === totalItems - 1 ? 0 : prev + 1));
+    }
+  };
+
+  const prevMedia = () => {
+    if (totalItems > 1) {
+      setCurrentMediaIndex((prev) => (prev === 0 ? totalItems - 1 : prev - 1));
     }
   };
 
@@ -285,10 +295,45 @@ const DetailsCart = ({ project, onClose }) => {
     setIsFullscreen(!isFullscreen);
   };
 
-  const currentImage =
-    project.projectImages && project.projectImages.length > 0
-      ? project.projectImages[currentImageIndex]
-      : project.image;
+  const currentMedia = mediaItems[currentMediaIndex];
+
+  // Render media content (image or PDF)
+  const renderMediaContent = (media, isFullscreen = false) => {
+    if (media.type === "pdf") {
+      return (
+        <div className={`relative bg-white rounded-lg shadow-inner overflow-hidden ${
+          isFullscreen ? "w-full h-full" : "w-full h-full"
+        }`}>
+          <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1 z-10">
+            <FaFilePdf />
+            <span>PDF</span>
+          </div>
+          <iframe
+            src={media.url}
+            className="w-full h-full border-0"
+            title="PDF Document"
+            style={{ 
+              minHeight: isFullscreen ? "100vh" : "500px",
+              height: isFullscreen ? "100vh" : "100%"
+            }}
+            allow="fullscreen"
+            loading="lazy"
+            scrolling="auto"
+          />
+        </div>
+      );
+    } else {
+      return (
+        <img
+          src={media.url}
+          alt={project.title}
+          className={`transition-transform duration-500 hover:scale-105 ${
+            isFullscreen ? "max-w-full max-h-full object-contain" : "max-w-full max-h-full object-contain"
+          }`}
+        />
+      );
+    }
+  };
 
   // Fullscreen overlay
   if (isFullscreen) {
@@ -312,47 +357,68 @@ const DetailsCart = ({ project, onClose }) => {
           </button>
         </div>
 
-        {/* Fullscreen image navigation */}
-        {project.projectImages?.length > 1 && (
+        {/* Media type indicator */}
+        <div className="absolute top-4 left-4 z-10 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+          {currentMedia.type === "pdf" ? "PDF Document" : "Image"} {currentMediaIndex + 1} of {totalItems}
+        </div>
+
+        {/* Fullscreen media navigation */}
+        {totalItems > 1 && (
           <>
             <button
-              onClick={prevImage}
+              onClick={prevMedia}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-3 z-10 transition-all duration-200"
-              aria-label="Previous image"
+              aria-label="Previous media"
             >
               <MdOutlineArrowBackIosNew className="text-2xl" />
             </button>
             <button
-              onClick={nextImage}
+              onClick={nextMedia}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-3 z-10 transition-all duration-200"
-              aria-label="Next image"
+              aria-label="Next media"
             >
               <MdOutlineArrowForwardIos className="text-2xl" />
             </button>
           </>
         )}
 
-        {/* Fullscreen image */}
-        <img
-          src={currentImage}
-          alt={project.title}
-          className="max-w-full max-h-full object-contain"
-        />
+        {/* Fullscreen media */}
+        <div className="w-full h-full flex items-center justify-center p-4">
+          {currentMedia.type === "pdf" ? (
+            <div className="w-full h-full bg-white rounded-lg overflow-hidden">
+              <iframe
+                src={currentMedia.url}
+                className="w-full h-full border-0"
+                title="PDF Document"
+                style={{ height: "100%" }}
+                allow="fullscreen"
+                loading="lazy"
+                scrolling="auto"
+              />
+            </div>
+          ) : (
+            renderMediaContent(currentMedia, true)
+          )}
+        </div>
 
         {/* Fullscreen dots */}
-        {project.projectImages?.length > 1 && (
+        {totalItems > 1 && (
           <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-            {project.projectImages.map((_, index) => (
+            {mediaItems.map((media, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentImageIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                  index === currentImageIndex
+                onClick={() => setCurrentMediaIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-200 relative ${
+                  index === currentMediaIndex
                     ? "bg-white scale-125"
                     : "bg-white bg-opacity-50 hover:bg-opacity-80"
                 }`}
-                aria-label={`Image ${index + 1}`}
-              />
+                aria-label={`${media.type} ${index + 1}`}
+              >
+                {media.type === "pdf" && (
+                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
+                )}
+              </button>
             ))}
           </div>
         )}
@@ -373,6 +439,18 @@ const DetailsCart = ({ project, onClose }) => {
         {/* Header */}
         <div className="flex items-center justify-between p-3 sm:p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-purple-50">
           <div className="flex items-center space-x-3 sm:space-x-4">
+            {/* Media Type Indicator */}
+            <div className="flex items-center space-x-2 px-3 py-1 bg-gray-100 rounded-full">
+              {currentMedia.type === "pdf" ? (
+                <FaFilePdf className="text-red-500 text-sm" />
+              ) : (
+                <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+              )}
+              <span className="text-xs font-medium text-gray-600">
+                {currentMedia.type === "pdf" ? "PDF Document" : "Image"}
+              </span>
+            </div>
+
             {/* Fullscreen Icon */}
             <BsArrowsAngleExpand
               className="text-xl sm:text-2xl text-gray-500 cursor-pointer hover:text-blue-600 transition-all duration-300 transform hover:scale-110"
@@ -407,36 +485,56 @@ const DetailsCart = ({ project, onClose }) => {
         </div>
 
         <div className="flex flex-col lg:flex-row h-[calc(100%-64px)]">
-          {/* Image Section */}
+          {/* Media Section */}
           <div className="lg:w-2/3 relative bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center h-1/2 lg:h-full">
-            {/* Image Display with fixed aspect ratio */}
+            {/* Media Display */}
             <div className="relative z-0 w-full h-full flex items-center justify-center p-2 sm:p-4">
-              <div className="relative w-full h-full max-w-4xl max-h-[600px] bg-white rounded-lg shadow-inner overflow-hidden group">
-                <img
-                  src={currentImage}
-                  alt={project.title}
-                  className="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-105"
-                />
-                {/* Image overlay for better visual appeal */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative w-full h-full bg-white rounded-lg shadow-inner overflow-hidden group">
+                {currentMedia.type === "pdf" ? (
+                  <div className="relative w-full h-full bg-white rounded-lg shadow-inner overflow-hidden">
+                    <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1 z-10">
+                      <FaFilePdf />
+                      <span>PDF</span>
+                    </div>
+                    <iframe
+                      src={currentMedia.url}
+                      className="w-full h-full border-0 rounded-lg"
+                      title="PDF Document"
+                      style={{ 
+                        minHeight: "500px",
+                        height: "100%"
+                      }}
+                      allow="fullscreen"
+                      loading="lazy"
+                      scrolling="auto"
+                    />
+                  </div>
+                ) : (
+                  <>
+                    {renderMediaContent(currentMedia)}
+                    
+                    {/* Media overlay for better visual appeal */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                  </>
+                )}
 
-                {/* Left Arrow - positioned on the left side of the image */}
-                {project.projectImages?.length > 1 && (
+                {/* Left Arrow */}
+                {totalItems > 1 && (
                   <button
-                    onClick={prevImage}
+                    onClick={prevMedia}
                     className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-2 sm:p-3 shadow-lg z-20 transition-all duration-200 hover:scale-110 opacity-0 group-hover:opacity-100"
-                    aria-label="Previous image"
+                    aria-label="Previous media"
                   >
                     <MdOutlineArrowBackIosNew className="text-gray-600 text-lg sm:text-xl" />
                   </button>
                 )}
 
-                {/* Right Arrow - positioned on the right side of the image */}
-                {project.projectImages?.length > 1 && (
+                {/* Right Arrow */}
+                {totalItems > 1 && (
                   <button
-                    onClick={nextImage}
+                    onClick={nextMedia}
                     className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-2 sm:p-3 shadow-lg z-20 transition-all duration-200 hover:scale-110 opacity-0 group-hover:opacity-100"
-                    aria-label="Next image"
+                    aria-label="Next media"
                   >
                     <MdOutlineArrowForwardIos className="text-gray-600 text-lg sm:text-xl" />
                   </button>
@@ -444,20 +542,24 @@ const DetailsCart = ({ project, onClose }) => {
               </div>
             </div>
 
-            {/* Dots */}
-            {project.projectImages?.length > 1 && (
+            {/* Dots with Media Type Indicators */}
+            {totalItems > 1 && (
               <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10 bg-black bg-opacity-30 px-3 py-2 rounded-full backdrop-blur-sm">
-                {project.projectImages.map((_, index) => (
+                {mediaItems.map((media, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-200 ${
-                      index === currentImageIndex
+                    onClick={() => setCurrentMediaIndex(index)}
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-200 relative ${
+                      index === currentMediaIndex
                         ? "bg-white scale-125 shadow-lg"
                         : "bg-white bg-opacity-60 hover:bg-opacity-80"
                     }`}
-                    aria-label={`Image ${index + 1}`}
-                  />
+                    aria-label={`${media.type} ${index + 1}`}
+                  >
+                    {media.type === "pdf" && (
+                      <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                    )}
+                  </button>
                 ))}
               </div>
             )}
@@ -470,19 +572,18 @@ const DetailsCart = ({ project, onClose }) => {
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-800 leading-tight flex-1">
                   {project.title}
                 </h2>
-                {project.projectImages?.length > 1 && (
+                {totalItems > 1 && (
                   <div className="flex items-center space-x-2 ml-4">
                     <button
-                      onClick={prevImage}
+                      onClick={prevMedia}
                       className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-all duration-200 hover:scale-110"
-                      aria-label="Previous image"
+                      aria-label="Previous media"
                     >
                       <MdOutlineArrowBackIosNew className="text-gray-600 text-sm" />
                     </button>
                     <button
-                      onClick={nextImage}
+                      onClick={nextMedia}
                       className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-all duration-200 hover:scale-110"
-                      aria-label="Next image"
                     >
                       <MdOutlineArrowForwardIos className="text-gray-600 text-sm" />
                     </button>
@@ -533,10 +634,16 @@ const DetailsCart = ({ project, onClose }) => {
               </div>
 
               {/* Additional interactive elements */}
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-2 mb-4 mt-4">
                 <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                  {currentImageIndex + 1} of{" "}
-                  {project.projectImages?.length || 1}
+                  {currentMediaIndex + 1} of {totalItems}
+                </span>
+                <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                  currentMedia.type === "pdf" 
+                    ? "bg-red-100 text-red-800" 
+                    : "bg-green-100 text-green-800"
+                }`}>
+                  {currentMedia.type === "pdf" ? "📄 PDF Document" : "🖼️ Image"}
                 </span>
                 {isLiked && (
                   <span className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium animate-pulse">
@@ -553,9 +660,9 @@ const DetailsCart = ({ project, onClose }) => {
                 <kbd className="px-2 py-1 bg-gray-100 rounded text-xs">←→</kbd>
               </div>
               <button
-                onClick={nextImage}
+                onClick={nextMedia}
                 className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors duration-200 ease-out group"
-                aria-label="Next image"
+                aria-label="Next media"
               >
                 <span className="text-sm hidden sm:inline">Next</span>
                 <MdOutlineArrowForwardIos className="text-lg group-hover:translate-x-1 transition-transform duration-200" />

@@ -311,7 +311,6 @@ const Portfolio = () => {
         "/images/branding/5.png",
         "/images/branding/6.png",
         "/images/branding/7.png",
-        
       ],
     },
 
@@ -323,9 +322,24 @@ const Portfolio = () => {
       detailedDescription:
         "Most businesses struggle to stand out on social media—either their visuals feel off-brand or their messaging doesn't resonate. My goal is to craft scroll-stopping graphics and sharp, on-brand copy that grabs attention and drives engagement. I would start with a quick content audit, identify gaps, then design custom templates and write microcopy tailored to each post. Promos to carousels, the feed would be aesthetically pleasing and high-performing, telling the brand's story and getting people to stop, read, and click.",
       projectImages: [
-        "/images/social.jpg",
-        "/images/social.jpg",
-        "/images/social.jpg",
+        "/images/socialMediaGraphics/1.png",
+        "/images/socialMediaGraphics/2.png",
+        "/images/socialMediaGraphics/3.png",
+        "/images/socialMediaGraphics/4.gif",
+        "/images/socialMediaGraphics/5.png",
+        "/images/socialMediaGraphics/6.png",
+        "/images/socialMediaGraphics/7.gif",
+        "/images/socialMediaGraphics/8.png",
+        "/images/socialMediaGraphics/a.png",
+        "/images/socialMediaGraphics/b.png",
+        "/images/socialMediaGraphics/c.png",
+        "/images/socialMediaGraphics/d.png",
+        "/images/socialMediaGraphics/e.png",
+        "/images/socialMediaGraphics/f.gif",
+        "/images/socialMediaGraphics/g.png",
+        "/images/socialMediaGraphics/h.png",
+        "/images/socialMediaGraphics/i.png",
+        "/images/socialMediaGraphics/m.png",
       ],
     },
     {
@@ -333,8 +347,7 @@ const Portfolio = () => {
       description:
         "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
       image: "/images/uiux.jpg",
-      detailedDescription:
-        `I help businesses turn clunky, outdated websites into clean, user-friendly experiences.
+      detailedDescription: `I help businesses turn clunky, outdated websites into clean, user-friendly experiences.
         Goals:
         → Improve usability & visual appeal
         → Boost engagement and conversions
@@ -346,10 +359,13 @@ const Portfolio = () => {
         Outcome: Delivered clean, intuitive interfaces that kept users engaged, turning visitors into customers.
         
         `,
-      projectImages: [
-        "/images/uiux.jpg",
-        "/images/uiux.jpg",
-        "/images/uiux.jpg",
+      mediaItems: [
+        { type: "image", url: "/images/webDesign/a.jpg" },
+        { type: "image", url: "/images/webDesign/b.png" },
+        { type: "pdf", url: "/images/webDesign/a.pdf" },
+        { type: "pdf", url: "/images/webDesign/b.pdf" },
+        { type: "pdf", url: "/images/webDesign/c.pdf" },
+        { type: "pdf", url: "/images/webDesign/d.pdf" },
       ],
     },
     {
@@ -472,7 +488,7 @@ const Portfolio = () => {
   const openProjectDetails = (project) => {
     setSelectedProject(project);
   };
-
+ 
   const closeProjectDetails = () => {
     setSelectedProject(null);
   };
