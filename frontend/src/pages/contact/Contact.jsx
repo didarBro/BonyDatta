@@ -304,15 +304,19 @@ const Contact = () => {
       </div>
 
       {/* Header */}
-      <div className="w-full bg-[#EF958A] py-10 flex justify-center">
+      <div
+        className="w-full bg-[#EF958A] py-10 flex justify-center"
+        style={{
+          fontFamily: "impact, impact-w01-2010, sans-serif",
+          fontSize: "70px",
+          fontWeight: 700,
+          lineHeight: "normal",
+          color: "rgb(34,34,34)",
+        }}
+      >
         <h1
-          style={{
-            fontFamily: "impact, impact-w01-2010, sans-serif",
-            fontSize: "70px",
-            fontWeight: 700,
-            lineHeight: "normal",
-            color: "rgb(34,34,34)",
-          }}
+          className="text-5xl font-extrabold tracking-wide text-black uppercase"
+          style={{ transform: "scaleY(1.4)" }}
         >
           {data.title}
         </h1>

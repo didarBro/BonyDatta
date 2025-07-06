@@ -37,24 +37,22 @@ const Services = () => {
   return (
     <div className="bg-white text-gray-800">
       {/* Header */}
-      <div className="bg-teal-300 py-10">
-        <div
-          className="max-w-6xl mx-auto text-center"
-          style={{
-            fontFamily: "impact, impact-w01-2010, sans-serif",
-            fontSize: "70px",
-            fontWeight: 700,
-            lineHeight: "normal",
-            color: "rgb(34,34,34)",
-          }}
+      <div
+        className="bg-[#eee75c] py-10 text-center"
+        style={{
+          fontFamily: "impact, impact-w01-2010, sans-serif",
+          fontSize: "70px",
+          fontWeight: 700,
+          lineHeight: "normal",
+          color: "rgb(34,34,34)",
+        }}
+      >
+        <h1
+          className="text-5xl md:text-5xl font-extrabold uppercase tracking-wide transform transition-all duration-700 ease-out"
+          style={{ transform: "scaleY(1.4)" }}
         >
-          <h1
-            className="text-5xl md:text-5xl font-extrabold uppercase tracking-wide"
-            style={{ transform: "scaleY(1.4)" }}
-          >
-            WHAT I DO
-          </h1>
-        </div>
+        WHAT I DO
+        </h1>
       </div>
 
       {/* Intro */}
