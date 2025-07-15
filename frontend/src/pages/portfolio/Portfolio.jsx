@@ -27,16 +27,16 @@ const Portfolio = () => {
     𝗥𝗲𝘀𝘂𝗹𝘁𝘀:
     Created solid, polished identities that would work everywhere & make a lasting impression, from 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺 𝘁𝗼 𝗶𝗻𝘃𝗲𝘀𝘁𝗼𝗿 𝗱𝗲𝗰𝗸𝘀.
     `,
-    image: "https://bonydatta.com/assets/images&pdfs/branding.webp",
+    image: "https://bonydatta.com/assets/images_and_pdfs/branding.webp",
     projectImages: [
-      "https://bonydatta.com/assets/images&pdfs/branding/1.webp",
-      "https://bonydatta.com/assets/images&pdfs/branding/2.webp",
-      "https://bonydatta.com/assets/images&pdfs/branding/3.webp",
-      "https://bonydatta.com/assets/images&pdfs/branding/4.webp",
-      "https://bonydatta.com/assets/images&pdfs/branding/5.webp",
-      "https://bonydatta.com/assets/images&pdfs/branding/6.webp",
-      "https://bonydatta.com/assets/images&pdfs/branding/7.webp",
-      "https://bonydatta.com/assets/images&pdfs/branding/8.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/branding/1.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/branding/2.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/branding/3.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/branding/4.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/branding/5.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/branding/6.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/branding/7.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/branding/8.webp",
     ],
   },
 
@@ -44,29 +44,29 @@ const Portfolio = () => {
     title: "Social Media Graphics",
     description:
       "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
-    image: "https://bonydatta.com/assets/images&pdfs/social.webp",
+    image: "https://bonydatta.com/assets/images_and_pdfs/social.webp",
     detailedDescription:
       "Most businesses struggle to stand out on social media—either their visuals feel off-brand or their messaging doesn't resonate. My goal is to craft scroll-stopping graphics and sharp, on-brand copy that grabs attention and drives engagement. I would start with a quick content audit, identify gaps, then design custom templates and write microcopy tailored to each post. Promos to carousels, the feed would be aesthetically pleasing and high-performing, telling the brand's story and getting people to stop, read, and click.",
     projectImages: [
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/1.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/2.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/3.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/4.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/5.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/7.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/8.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/a.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/b.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/c.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/d.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/e.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/f.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/g.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/h.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/i.webp",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/3.gif",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/4.gif",
-      "https://bonydatta.com/assets/images&pdfs/socialMediaGraphics/7.gif",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/1.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/2.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/3.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/4.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/5.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/7.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/8.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/a.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/b.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/c.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/d.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/e.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/f.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/g.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/h.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/i.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/3.gif",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/4.gif",
+      "https://bonydatta.com/assets/images_and_pdfs/socialMediaGraphics/7.gif",
     ],
   },
 
@@ -74,7 +74,7 @@ const Portfolio = () => {
     title: "Website UI/UX Design",
     description:
       "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
-    image: "https://bonydatta.com/assets/images&pdfs/uiux.webp",
+    image: "https://bonydatta.com/assets/images_and_pdfs/uiux.webp",
     detailedDescription: `I help businesses turn clunky, outdated websites into clean, user-friendly experiences.
       Goals:
       → Improve usability & visual appeal
@@ -87,12 +87,12 @@ const Portfolio = () => {
       Outcome: Delivered clean, intuitive interfaces that kept users engaged, turning visitors into customers.
     `,
     mediaItems: [
-      { type: "image", url: "https://bonydatta.com/assets/images&pdfs/webDesign/a.jpg" },
-      { type: "image", url: "https://bonydatta.com/assets/images&pdfs/webDesign/b.png" },
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/webDesign/a.pdf" },
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/webDesign/b.pdf" },
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/webDesign/c.pdf" },
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/webDesign/d.pdf" },
+      { type: "image", url: "https://bonydatta.com/assets/images_and_pdfs/webDesign/a.jpg" },
+      { type: "image", url: "https://bonydatta.com/assets/images_and_pdfs/webDesign/b.png" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/webDesign/a.pdf" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/webDesign/b.pdf" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/webDesign/c.pdf" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/webDesign/d.pdf" },
     ],
   },
 
@@ -100,18 +100,18 @@ const Portfolio = () => {
     title: "Print & Digital",
     description:
       "Clear, compelling brand collateral captures the essence of a brand. I produce sleek, on-brand assets, including flyers, decks, brochures, and more. I simplify visuals and copy for clarity and impact. The result is digital assets that are sharp, cohesive, and memorable.",
-    image: "https://bonydatta.com/assets/images&pdfs/print.webp",
+    image: "https://bonydatta.com/assets/images_and_pdfs/print.webp",
     detailedDescription:
       "Clear, compelling brand collateral captures the essence of a brand. I produce sleek, on-brand assets, including flyers, decks, brochures, and more. I simplify visuals and copy for clarity and impact. The result is digital assets that are sharp, cohesive, and memorable.",
     mediaItems: [
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/print/Flyer-1.pdf" },
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/print/Flyer-2.pdf" },
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/print/Flyer-3.pdf" },
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/print/Flyer-4.pdf" },
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/print/Flyers.pdf" },
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/print/Presentation.pdf" },
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/print/WaterBottleDesign.pdf" },
-      { type: "pdf", url: "https://bonydatta.com/assets/images&pdfs/print/WindowBanner.pdf" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/print/Flyer-1.pdf" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/print/Flyer-2.pdf" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/print/Flyer-3.pdf" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/print/Flyer-4.pdf" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/print/Flyers.pdf" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/print/Presentation.pdf" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/print/WaterBottleDesign.pdf" },
+      { type: "pdf", url: "https://bonydatta.com/assets/images_and_pdfs/print/WindowBanner.pdf" },
     ],
   },
 
@@ -119,11 +119,11 @@ const Portfolio = () => {
     title: "Campaign Creatives",
     description:
       "Businesses often have great products or offers, but struggle to communicate them clearly through visuals and messaging. Campaign creatives, such as ads, emails, and landing page graphics, must feel authentic, consistent, and result-driven. I dig into the audience’s needs and the sales funnel, then tailor designs and copy accordingly. The final creatives boost click-throughs, improve ROI, and make the campaigns stand out.",
-    image: "https://bonydatta.com/assets/images&pdfs/campaign.webp",
+    image: "https://bonydatta.com/assets/images_and_pdfs/campaign.webp",
     detailedDescription:
       "Businesses often have great products or offers, but struggle to communicate them clearly through visuals and messaging. Campaign creatives, such as ads, emails, and landing page graphics, must feel authentic, consistent, and result-driven. I dig into the audience’s needs and the sales funnel, then tailor designs and copy accordingly. The final creatives boost click-throughs, improve ROI, and make the campaigns stand out.",
     mediaItems: [
-      { type: "image", url: "https://bonydatta.com/assets/images&pdfs/campaign/a.webp" },
+      { type: "image", url: "https://bonydatta.com/assets/images_and_pdfs/campaign/a.webp" },
     ],
   },
 
@@ -131,13 +131,13 @@ const Portfolio = () => {
     title: "Email Marketing",
     description:
       "I help brands connect with their audiences through emails that don’t feel like spam. From welcome flows to promos and newsletters, I handle strategy, copywriting, and design, with a focus on clean layouts, strong CTAs, and audience segmentation. It results in higher open rates, more clicks, and emails people actually want to read.",
-    image: "https://bonydatta.com/assets/images&pdfs/email.webp",
+    image: "https://bonydatta.com/assets/images_and_pdfs/email.webp",
     detailedDescription:
       "I help brands connect with their audiences through emails that don’t feel like spam. From welcome flows to promos and newsletters, I handle strategy, copywriting, and design, with a focus on clean layouts, strong CTAs, and audience segmentation. It results in higher open rates, more clicks, and emails people actually want to read.",
     projectImages: [
-      "https://bonydatta.com/assets/images&pdfs/email.webp",
-      "https://bonydatta.com/assets/images&pdfs/email.webp",
-      "https://bonydatta.com/assets/images&pdfs/email.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/email.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/email.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/email.webp",
     ],
   },
 
@@ -145,13 +145,13 @@ const Portfolio = () => {
     title: "Paid Media Campaign",
     description:
       "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
-    image: "https://bonydatta.com/assets/images&pdfs/paid.webp",
+    image: "https://bonydatta.com/assets/images_and_pdfs/paid.webp",
     detailedDescription:
       "Describe your image here. Use catchy text to tell people the story behind the photo. Go to 'Manage Media' to add your content.",
     projectImages: [
-      "https://bonydatta.com/assets/images&pdfs/paid.webp",
-      "https://bonydatta.com/assets/images&pdfs/paid.webp",
-      "https://bonydatta.com/assets/images&pdfs/paid.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/paid.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/paid.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/paid.webp",
     ],
   },
 
@@ -159,13 +159,13 @@ const Portfolio = () => {
     title: "Performance & Analytics",
     description:
       "I help clients transform scattered, outdated, or non-existent branding into seamless, modern identities that truly reflect their business.",
-    image: "https://bonydatta.com/assets/images&pdfs/performance.webp",
+    image: "https://bonydatta.com/assets/images_and_pdfs/performance.webp",
     detailedDescription:
       "Describe your image here. Use catchy text to tell people the story behind the photo. Go to 'Manage Media' to add your content.",
     projectImages: [
-      "https://bonydatta.com/assets/images&pdfs/performance.webp",
-      "https://bonydatta.com/assets/images&pdfs/performance.webp",
-      "https://bonydatta.com/assets/images&pdfs/performance.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/performance.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/performance.webp",
+      "https://bonydatta.com/assets/images_and_pdfs/performance.webp",
     ],
   },
 ];
