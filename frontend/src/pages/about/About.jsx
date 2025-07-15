@@ -76,7 +76,7 @@ export default function About() {
     title: "WHO AM I ?",
     subheading:
       "Growth & Brand Marketing Pro | Full-Funnel Fixer | Remote-Ready",
-    video: "/video/about.mp4",
+    video: "https://bonydatta.com/assets/video/about.mp4",
     paragraphs: [
       "Full-time digital marketer, content strategist, and branding enthusiast & part-time skincare nerd.",
       "If your business is online (and it should be), I help you own the space—from strategy to full-scale execution across all major platforms.",
