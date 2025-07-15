@@ -37,3 +37,5 @@ jobs:
           local-dir: frontend/dist/
           server-dir: ./
           dangerous-clean-slate: true
+          exclude: |
+            **/assets/**
