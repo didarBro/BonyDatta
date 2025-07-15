@@ -1,4 +1,3 @@
-
 // import React, { useState, useEffect } from "react";
 // import { RiShareForwardLine } from "react-icons/ri";
 // import {
@@ -127,7 +126,7 @@
 //           src={media.url}
 //           alt={project.title}
 //           className={`transition-transform duration-500 hover:scale-105 ${
-//             isFullscreen ? "max-w-full max-h-full object-contain" : "max-w-full max-h-full object-contain"
+//             isFullscreen ? "max-w-full max-h-full object-contain" : "w-full h-full object-contain"
 //           }`}
 //         />
 //       );
@@ -285,12 +284,12 @@
 
 //         <div className="flex flex-col lg:flex-row h-[calc(100%-64px)]">
 //           {/* Media Section */}
-//           <div className="lg:w-2/3 relative bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center h-1/2 lg:h-full">
-//             {/* Media Display */}
-//             <div className="relative z-0 w-full h-full flex items-center justify-center p-2 sm:p-4">
-//               <div className="relative w-full h-full bg-white rounded-lg shadow-inner overflow-hidden group">
+//           <div className="lg:w-2/3 relative bg-gradient-to-br from-gray-50 to-gray-100 h-1/2 lg:h-full">
+//             {/* Media Display - Centered */}
+//             <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4">
+//               <div className="relative w-full h-full bg-white rounded-lg shadow-inner overflow-hidden group flex items-center justify-center">
 //                 {currentMedia.type === "pdf" ? (
-//                   <div className="relative w-full h-full bg-white rounded-lg shadow-inner overflow-hidden">
+//                   <div className="w-full h-full bg-white rounded-lg shadow-inner overflow-hidden">
 //                     <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1 z-10">
 //                       <FaFilePdf />
 //                       <span>PDF</span>
@@ -301,7 +300,8 @@
 //                       title="PDF Document"
 //                       style={{ 
 //                         minHeight: "500px",
-//                         height: "100%"
+//                         height: "100%",
+//                         width: "100%"
 //                       }}
 //                       allow="fullscreen"
 //                       loading="lazy"
@@ -309,12 +309,14 @@
 //                     />
 //                   </div>
 //                 ) : (
-//                   <>
+//                   <div className="flex items-center justify-center w-full h-full p-4">
 //                     {renderMediaContent(currentMedia)}
-                    
-//                     {/* Media overlay for better visual appeal */}
-//                     <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-//                   </>
+//                   </div>
+//                 )}
+
+//                 {/* Media overlay for better visual appeal */}
+//                 {currentMedia.type !== "pdf" && (
+//                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
 //                 )}
 
 //                 {/* Left Arrow */}
@@ -492,6 +494,10 @@ const DetailsCart = ({ project, onClose }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [imageLoadStates, setImageLoadStates] = useState({});
+  const [pdfLoadStates, setPdfLoadStates] = useState({});
+  const [loadingTimeout, setLoadingTimeout] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 50);
@@ -533,15 +539,90 @@ const DetailsCart = ({ project, onClose }) => {
   const mediaItems = getMediaItems();
   const totalItems = mediaItems.length;
 
+  // Enhanced loading with delay check
+  const showLoadingWithDelay = (callback) => {
+    // Clear any existing timeout
+    if (loadingTimeout) {
+      clearTimeout(loadingTimeout);
+    }
+
+    // Set a timeout to show loading only if it takes longer than 300ms
+    const timeout = setTimeout(() => {
+      setIsLoading(true);
+    }, 300);
+
+    setLoadingTimeout(timeout);
+
+    // Simulate the actual loading process
+    const loadingProcess = setTimeout(() => {
+      clearTimeout(timeout);
+      setIsLoading(false);
+      setLoadingTimeout(null);
+      callback();
+    }, Math.random() * 1000 + 500); // Random delay between 500-1500ms
+
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(loadingProcess);
+    };
+  };
+
   const nextMedia = () => {
     if (totalItems > 1) {
-      setCurrentMediaIndex((prev) => (prev === totalItems - 1 ? 0 : prev + 1));
+      const nextIndex = currentMediaIndex === totalItems - 1 ? 0 : currentMediaIndex + 1;
+      const nextMedia = mediaItems[nextIndex];
+      
+      // Check if media is already loaded
+      const isAlreadyLoaded = nextMedia.type === "image" 
+        ? imageLoadStates[nextIndex] 
+        : pdfLoadStates[nextIndex];
+      
+      if (isAlreadyLoaded) {
+        setCurrentMediaIndex(nextIndex);
+      } else {
+        showLoadingWithDelay(() => {
+          setCurrentMediaIndex(nextIndex);
+        });
+      }
     }
   };
 
   const prevMedia = () => {
     if (totalItems > 1) {
-      setCurrentMediaIndex((prev) => (prev === 0 ? totalItems - 1 : prev - 1));
+      const prevIndex = currentMediaIndex === 0 ? totalItems - 1 : currentMediaIndex - 1;
+      const prevMedia = mediaItems[prevIndex];
+      
+      // Check if media is already loaded
+      const isAlreadyLoaded = prevMedia.type === "image" 
+        ? imageLoadStates[prevIndex] 
+        : pdfLoadStates[prevIndex];
+      
+      if (isAlreadyLoaded) {
+        setCurrentMediaIndex(prevIndex);
+      } else {
+        showLoadingWithDelay(() => {
+          setCurrentMediaIndex(prevIndex);
+        });
+      }
+    }
+  };
+
+  const goToMedia = (index) => {
+    if (index !== currentMediaIndex) {
+      const targetMedia = mediaItems[index];
+      
+      // Check if media is already loaded
+      const isAlreadyLoaded = targetMedia.type === "image" 
+        ? imageLoadStates[index] 
+        : pdfLoadStates[index];
+      
+      if (isAlreadyLoaded) {
+        setCurrentMediaIndex(index);
+      } else {
+        showLoadingWithDelay(() => {
+          setCurrentMediaIndex(index);
+        });
+      }
     }
   };
 
@@ -574,8 +655,136 @@ const DetailsCart = ({ project, onClose }) => {
 
   const currentMedia = mediaItems[currentMediaIndex];
 
+  // Handle image load
+  const handleImageLoad = (index) => {
+    setImageLoadStates(prev => ({
+      ...prev,
+      [index]: true
+    }));
+  };
+
+  // Handle PDF load
+  const handlePdfLoad = (index) => {
+    setPdfLoadStates(prev => ({
+      ...prev,
+      [index]: true
+    }));
+  };
+
+  // Enhanced Loading Component with ripple wave effect
+  const LoadingOverlay = () => (
+    <div className="absolute inset-0 z-30">
+      {/* Ripple wave effect */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Multiple ripple waves */}
+        {[1, 2, 3, 4].map((i) => (
+          <div
+            key={i}
+            className="absolute left-1/2 top-1/2 w-4 h-4 -ml-2 -mt-2 rounded-full border-2 border-blue-400/60 animate-ping"
+            style={{
+              animationDelay: `${i * 0.4}s`,
+              animationDuration: '2s',
+              animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)'
+            }}
+          ></div>
+        ))}
+        
+        {/* Scanning lines effect */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-200/30 to-transparent h-1 animate-pulse"
+             style={{
+               background: 'linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.3), transparent)',
+               animation: 'scanLines 3s ease-in-out infinite'
+             }}>
+        </div>
+        
+        {/* Shimmer overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+             style={{
+               background: 'linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent)',
+               animation: 'shimmer 1.5s ease-in-out infinite'
+             }}>
+        </div>
+      </div>
+      
+      {/* Central loading indicator with morphing effect */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-2xl border border-white/20 animate-pulse">
+          <div className="text-center">
+            {/* Morphing loading spinner */}
+            <div className="relative w-12 h-12 mx-auto mb-3">
+              {/* Outer rotating ring */}
+              <div className="absolute inset-0 border-3 border-gray-200 rounded-full opacity-30"></div>
+              
+              {/* Main morphing circle */}
+              <div className="absolute inset-0 border-3 border-blue-500 rounded-full border-t-transparent animate-spin"></div>
+              
+              {/* Inner pulsing elements */}
+              <div className="absolute inset-1 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full flex items-center justify-center">
+                {currentMedia.type === "pdf" ? (
+                  <FaFilePdf className="text-red-500 text-sm animate-bounce" />
+                ) : (
+                  <div className="relative">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <div className="absolute inset-0 w-3 h-3 bg-green-300 rounded-full animate-ping"></div>
+                  </div>
+                )}
+              </div>
+              
+              {/* Orbiting dots */}
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  className="absolute w-2 h-2 bg-blue-400 rounded-full animate-spin"
+                  style={{
+                    top: '50%',
+                    left: '50%',
+                    transform: `translate(-50%, -50%) rotate(${i * 120}deg) translateY(-20px)`,
+                    animationDelay: `${i * 0.3}s`,
+                    animationDuration: '2s'
+                  }}
+                ></div>
+              ))}
+            </div>
+            
+            {/* Loading text with typewriter effect */}
+            <p className="text-sm text-gray-700 font-medium">
+              Loading {currentMedia.type === "pdf" ? "PDF" : "image"}
+              <span className="animate-pulse">...</span>
+            </p>
+            
+            {/* Wave dots */}
+            <div className="flex justify-center space-x-1 mt-2">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <div
+                  key={i}
+                  className="w-1 h-1 bg-blue-500 rounded-full animate-bounce"
+                  style={{ 
+                    animationDelay: `${i * 0.1}s`,
+                    animationDuration: '1s'
+                  }}
+                ></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <style jsx>{`
+        @keyframes scanLines {
+          0% { transform: translateY(-100%); }
+          50% { transform: translateY(50vh); }
+          100% { transform: translateY(100vh); }
+        }
+        @keyframes shimmer {
+          0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+          100% { transform: translateX(100vw) translateY(100vh) rotate(45deg); }
+        }
+      `}</style>
+    </div>
+  );
+
   // Render media content (image or PDF)
-  const renderMediaContent = (media, isFullscreen = false) => {
+  const renderMediaContent = (media, index, isFullscreen = false) => {
     if (media.type === "pdf") {
       return (
         <div className={`relative bg-white rounded-lg shadow-inner overflow-hidden ${
@@ -596,6 +805,7 @@ const DetailsCart = ({ project, onClose }) => {
             allow="fullscreen"
             loading="lazy"
             scrolling="auto"
+            onLoad={() => handlePdfLoad(index)}
           />
         </div>
       );
@@ -607,6 +817,7 @@ const DetailsCart = ({ project, onClose }) => {
           className={`transition-transform duration-500 hover:scale-105 ${
             isFullscreen ? "max-w-full max-h-full object-contain" : "w-full h-full object-contain"
           }`}
+          onLoad={() => handleImageLoad(index)}
         />
       );
     }
@@ -646,6 +857,7 @@ const DetailsCart = ({ project, onClose }) => {
               onClick={prevMedia}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-3 z-10 transition-all duration-200"
               aria-label="Previous media"
+              disabled={isLoading}
             >
               <MdOutlineArrowBackIosNew className="text-2xl" />
             </button>
@@ -653,6 +865,7 @@ const DetailsCart = ({ project, onClose }) => {
               onClick={nextMedia}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-3 z-10 transition-all duration-200"
               aria-label="Next media"
+              disabled={isLoading}
             >
               <MdOutlineArrowForwardIos className="text-2xl" />
             </button>
@@ -660,7 +873,8 @@ const DetailsCart = ({ project, onClose }) => {
         )}
 
         {/* Fullscreen media */}
-        <div className="w-full h-full flex items-center justify-center p-4">
+        <div className="w-full h-full flex items-center justify-center p-4 relative">
+          {isLoading && <LoadingOverlay />}
           {currentMedia.type === "pdf" ? (
             <div className="w-full h-full bg-white rounded-lg overflow-hidden">
               <iframe
@@ -671,10 +885,11 @@ const DetailsCart = ({ project, onClose }) => {
                 allow="fullscreen"
                 loading="lazy"
                 scrolling="auto"
+                onLoad={() => handlePdfLoad(currentMediaIndex)}
               />
             </div>
           ) : (
-            renderMediaContent(currentMedia, true)
+            renderMediaContent(currentMedia, currentMediaIndex, true)
           )}
         </div>
 
@@ -684,13 +899,14 @@ const DetailsCart = ({ project, onClose }) => {
             {mediaItems.map((media, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentMediaIndex(index)}
+                onClick={() => goToMedia(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-200 relative ${
                   index === currentMediaIndex
                     ? "bg-white scale-125"
                     : "bg-white bg-opacity-50 hover:bg-opacity-80"
                 }`}
                 aria-label={`${media.type} ${index + 1}`}
+                disabled={isLoading}
               >
                 {media.type === "pdf" && (
                   <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
@@ -767,6 +983,9 @@ const DetailsCart = ({ project, onClose }) => {
             {/* Media Display - Centered */}
             <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4">
               <div className="relative w-full h-full bg-white rounded-lg shadow-inner overflow-hidden group flex items-center justify-center">
+                {/* Loading Overlay - Only shows when isLoading is true */}
+                {isLoading && <LoadingOverlay />}
+                
                 {currentMedia.type === "pdf" ? (
                   <div className="w-full h-full bg-white rounded-lg shadow-inner overflow-hidden">
                     <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1 z-10">
@@ -785,11 +1004,12 @@ const DetailsCart = ({ project, onClose }) => {
                       allow="fullscreen"
                       loading="lazy"
                       scrolling="auto"
+                      onLoad={() => handlePdfLoad(currentMediaIndex)}
                     />
                   </div>
                 ) : (
                   <div className="flex items-center justify-center w-full h-full p-4">
-                    {renderMediaContent(currentMedia)}
+                    {renderMediaContent(currentMedia, currentMediaIndex)}
                   </div>
                 )}
 
@@ -802,8 +1022,9 @@ const DetailsCart = ({ project, onClose }) => {
                 {totalItems > 1 && (
                   <button
                     onClick={prevMedia}
-                    className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-2 sm:p-3 shadow-lg z-20 transition-all duration-200 hover:scale-110 opacity-0 group-hover:opacity-100"
+                    className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-2 sm:p-3 shadow-lg z-20 transition-all duration-200 hover:scale-110 opacity-0 group-hover:opacity-100 disabled:opacity-50"
                     aria-label="Previous media"
+                    disabled={isLoading}
                   >
                     <MdOutlineArrowBackIosNew className="text-gray-600 text-lg sm:text-xl" />
                   </button>
@@ -813,8 +1034,9 @@ const DetailsCart = ({ project, onClose }) => {
                 {totalItems > 1 && (
                   <button
                     onClick={nextMedia}
-                    className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-2 sm:p-3 shadow-lg z-20 transition-all duration-200 hover:scale-110 opacity-0 group-hover:opacity-100"
+                    className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-2 sm:p-3 shadow-lg z-20 transition-all duration-200 hover:scale-110 opacity-0 group-hover:opacity-100 disabled:opacity-50"
                     aria-label="Next media"
+                    disabled={isLoading}
                   >
                     <MdOutlineArrowForwardIos className="text-gray-600 text-lg sm:text-xl" />
                   </button>
@@ -828,13 +1050,14 @@ const DetailsCart = ({ project, onClose }) => {
                 {mediaItems.map((media, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentMediaIndex(index)}
+                    onClick={() => goToMedia(index)}
                     className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-200 relative ${
                       index === currentMediaIndex
                         ? "bg-white scale-125 shadow-lg"
                         : "bg-white bg-opacity-60 hover:bg-opacity-80"
                     }`}
                     aria-label={`${media.type} ${index + 1}`}
+                    disabled={isLoading}
                   >
                     {media.type === "pdf" && (
                       <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-red-500 rounded-full"></div>
@@ -856,14 +1079,16 @@ const DetailsCart = ({ project, onClose }) => {
                   <div className="flex items-center space-x-2 ml-4">
                     <button
                       onClick={prevMedia}
-                      className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-all duration-200 hover:scale-110"
+                      className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-all duration-200 hover:scale-110 disabled:opacity-50"
                       aria-label="Previous media"
+                      disabled={isLoading}
                     >
                       <MdOutlineArrowBackIosNew className="text-gray-600 text-sm" />
                     </button>
                     <button
                       onClick={nextMedia}
-                      className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-all duration-200 hover:scale-110"
+                      className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-all duration-200 hover:scale-110 disabled:opacity-50"
+                      disabled={isLoading}
                     >
                       <MdOutlineArrowForwardIos className="text-gray-600 text-sm" />
                     </button>
@@ -930,6 +1155,11 @@ const DetailsCart = ({ project, onClose }) => {
                     ❤️ Liked
                   </span>
                 )}
+                {isLoading && (
+                  <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">
+                    🔄 Loading...
+                  </span>
+                )}
               </div>
             </div>
 
@@ -941,8 +1171,9 @@ const DetailsCart = ({ project, onClose }) => {
               </div>
               <button
                 onClick={nextMedia}
-                className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors duration-200 ease-out group"
+                className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors duration-200 ease-out group disabled:opacity-50"
                 aria-label="Next media"
+                disabled={isLoading}
               >
                 <span className="text-sm hidden sm:inline">Next</span>
                 <MdOutlineArrowForwardIos className="text-lg group-hover:translate-x-1 transition-transform duration-200" />
@@ -956,3 +1187,5 @@ const DetailsCart = ({ project, onClose }) => {
 };
 
 export default DetailsCart;
+
+
