@@ -264,7 +264,7 @@ const Portfolio = () => {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto pl-2 pr-2 pb-2">
         {[
           { slice: [0, 2], cols: 2 },
           { slice: [2, 5], cols: 3 },
