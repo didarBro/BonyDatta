@@ -36,4 +36,3 @@ jobs:
           port: 21
           local-dir: frontend/dist/
           server-dir: ./
-          dangerous-clean-slate: true
