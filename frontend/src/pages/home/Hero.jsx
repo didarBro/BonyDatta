@@ -1,3 +1,4 @@
+
 import { ArrowRight, MoveRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -49,7 +50,7 @@ export default function Hero() {
       style={{ backgroundColor: bg }}
       className="w-full h-screen flex items-center justify-center transition-all duration-200 ease-in-out"
     >
-      <div className="w-full max-w-5xl px-4 md:px-6">
+      <div className="w-full max-w-5xl px-6">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -57,10 +58,9 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="relative"
           >
             <p
-              className="text-lg sm:text-2xl md:text-5xl mb-6 md:mb-10 text-left"
+              className="text-2xl md:text-5xl mb-10 text-left"
               style={{
                 color: "rgb(34,34,34)",
                 fontFamily: "Arial, sans-serif",
@@ -70,9 +70,9 @@ export default function Hero() {
               {subheading}
             </p>
 
-            <hr className="w-full border-t-1 border-gray-500/60 left-0 mt-[-4px] md:mt-[-7px] absolute" />
+            <hr className="w-full border-t-1 border-gray-500/60 left-0 mt-[-7px] absolute" />
             <h1
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl py-0 leading-none text-center font-extrabold tracking-widest"
+              className="text-5xl py-0 leading-none text-center md:text-8xl font-extrabold tracking-widest"
               style={{
                 color: "rgb(34,34,34)",
                 transform: "scaleY(1.4)",
@@ -81,14 +81,14 @@ export default function Hero() {
             >
               {heading}
             </h1>
-            <hr className="w-full border-t-1 border-gray-500/60 left-0 mt-[4px] md:mt-[7px] absolute" />
+            <hr className="w-full border-t-1 border-gray-500/60 left-0 mt-[7px] absolute" />
           </motion.div>
         </AnimatePresence>
 
-        <div className="mt-8 md:mt-10 flex justify-end">
+        <div className="mt-10 flex justify-end">
           <button
             onClick={scrollToPortfolio}
-            className="group text-lg sm:text-xl md:text-2xl flex flex-col items-center"
+            className="group text-2xl flex flex-col items-center"
           >
             <span className="relative inline-block w-fit">
               <Link
@@ -117,7 +117,7 @@ export default function Hero() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 110 12"
                   preserveAspectRatio="none"
-                  className="w-full h-2 sm:h-3 mt-1 transition"
+                  className="w-full h-3 mt-1 transition"
                   style={{ color: "rgb(34,34,34)" }}
                 >
                   <line
