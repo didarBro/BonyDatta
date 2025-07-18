@@ -170,7 +170,6 @@ const Portfolio = () => {
   },
 ];
 
-
   const [liked, setLiked] = useState({});
   const [shareModal, setShareModal] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -393,5 +392,4 @@ const Portfolio = () => {
     </div>
   );
 };
-
 export default Portfolio;
