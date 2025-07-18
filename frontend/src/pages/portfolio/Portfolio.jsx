@@ -264,7 +264,7 @@ const Portfolio = () => {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto pl-2 pr-2 pb-2">
         {[
           { slice: [0, 2], cols: 2 },
           { slice: [2, 5], cols: 3 },
@@ -273,7 +273,7 @@ const Portfolio = () => {
           <div
             key={rowIndex}
             ref={(el) => (rowRefs.current[rowIndex] = el)}
-            className={`grid grid-cols-2 md:grid-cols-${
+            className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-${row.cols} justify-items-center-${
               row.cols
             } gap-8 mt-8 transform transition-all duration-1000 ease-out
               ${
